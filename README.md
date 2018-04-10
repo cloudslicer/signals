@@ -8,15 +8,14 @@ andlocal topics.
 
 
 def subscribe(topic, callback):
-
+--
 
  associate a topic with a callback so any call to subscribe.publish
  will be routed to the callback that the user has passed in. There 
  can be an unlimited number subscribers for a topic.
 
    parameters:
-   -----------
-
+   
    topic: can be any string, if it is starts with 'mqtt://' it
      is is forwarded to paho and the remaining string after 'mqtt://'
      is used an the mqtt topic
@@ -59,11 +58,11 @@ def subscribe(topic, callback):
 
 
 def unsubscribe(topic, callback):
-
+--
  remove a callback from a topic 
 
    parameters:
-   -----------
+   
 
    topic: can be any string, if it is starts with 'mqtt://' it
      is is forwarded to paho and the remaining string after 'mqtt://'
@@ -85,11 +84,11 @@ def unsubscribe(topic, callback):
 
 
 def publish( topic, args ):
-
+--
  Multicast 'args' to N number of listeners to 'topic'
 
    parameters:
-   -----------
+   
 
    topic: can be any string, if it is starts with 'mqtt://' it
      is is forwarded to paho and the remaining string after 'mqtt://'
@@ -104,12 +103,12 @@ def publish( topic, args ):
  
 
 def addPipeWatch(self, fd, onData, onError):
-
+--
   Add fd to an internal poll loop on data it gets routed to 
   onData if an error has occured onError is called. This
   
    parameters:
-   -----------
+   
 
    fd: file descriptor
    onData: function(chunk)
@@ -121,7 +120,7 @@ def addPipeWatch(self, fd, onData, onError):
    
 
 def removePipeWatch(self, fd, onData, onError):
-
+--
    Remove fd from internal poll list 
 
 
@@ -129,30 +128,32 @@ def removePipeWatch(self, fd, onData, onError):
 
 
 Usage:
+--
 
+```
 import signals
 
-# optional configuration based on you mqtt message broker
+#optional configuration based on you mqtt message broker
 
-# -Default port 
+#Default port 
 #signals.MQTT_PORT = 1883
-# -Default host
+#Default host
 #signals.MQTT_HOST = '127.0.0.1'
 
-# -if your message broker requires a password 
+#if your message broker requires a password 
 #signals.MQTT_AUTH = {"username":"...", "password":"..."}
-# -else no protection (default)
+#else no protection (default)
 #signals.MQTT_AUTH = None
 
 
-# basic structure of your app
+#basic structure of your app
 #>  subscribe to events 
 #>  call mainloop to service events
 
 signals.subscribe(topic,callback)
 
 
-# blocking call to handle all events
+#blocking call to handle all events
 signals.mainloop() 
-
+```
   
