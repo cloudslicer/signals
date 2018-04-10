@@ -22,6 +22,7 @@ MQTT_HOST = '127.0.0.1'
 
 # if your message broker requires a password 
 #MQTT_AUTH = {"username":"", "password":""}
+MQTT_AUTH = None
 
 MqttErrCodes = {
     0: "Connection successful",
@@ -68,8 +69,9 @@ def create_mqtt_client(name, connected, on_message=None):
         mqttc.on_message = on_message
     host = MQTT_HOST
     port = MQTT_PORT
-    mqttc.username_pw_set(MQTT_AUTH['username'],
-                          password=MQTT_AUTH['password'])
+    if MQTT_AUTH:
+        mqttc.username_pw_set(MQTT_AUTH['username'],
+            password=MQTT_AUTH['password'])
 
     mqttc.connect(host, port, 60)
     mqttc.loop_start()
